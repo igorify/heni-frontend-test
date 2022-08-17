@@ -13,6 +13,7 @@ interface HeaderProps {
 
 export const Header = ({ pageProps }: HeaderProps) => {
   const { title, url, description, image } = pageProps;
+  console.log("test ");
   return (
     <Head>
       <title>{title}</title>
