@@ -5,6 +5,8 @@ import { render, screen } from "@testing-library/react";
 const onClick = jest.fn();
 
 const baseProps = {
+  alt: 'alt',
+  image: "https://i.imgur.com/woCxpkj.jpg",
   label: "label",
   description: "description",
 };
@@ -19,9 +21,11 @@ describe("Given a Card Component", () => {
       test("Then the label should be rendered correctly", () => {
         expect(screen.getByText("label")).toBeInTheDocument();
       });
-
       test("Then the description should be rendered correctly", () => {
-        expect(screen.getByText("label")).toBeInTheDocument();
+        expect(screen.getByText("description")).toBeInTheDocument();
+      });
+      test("Then the image alt value should be rendered correctly", () => {
+        expect(screen.getByAltText('alt')).toBeInTheDocument();
       });
     });
 
@@ -40,6 +44,16 @@ describe("Given a Card Component", () => {
           expect(onClick).toHaveBeenCalledTimes(1);
         });
       });
+    });
+  });
+
+  describe("When it is loading", () => {
+    beforeEach(() => {
+      render(<Card {...baseProps} loading={true} />);
+    });
+
+    test("Then the loading placeholders should be rendered correctly", () => {
+      expect(screen.getAllByTestId('loading-placeholder')).toHaveLength(4);
     });
   });
 });

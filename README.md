@@ -30,7 +30,7 @@ The purpose of this test is to show a list of ships using SpaceX GraphQL API : h
 
 ### Any technologies you would add to improve the project/code quality ?
 
-....
+- I would setup prettier to correct code syntax on file save.
 
 ### About your own implementation ?
 

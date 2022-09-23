@@ -1,17 +1,9 @@
-import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
+import { ApolloProvider } from "@apollo/client";
 import type { AppProps } from "next/app";
 import { Header } from "../page-content/header";
+import { client } from '../utils/apollo-client';
 
 const App = ({ Component, pageProps }: AppProps) => {
-  const cache = pageProps.cache
-    ? new InMemoryCache().restore(pageProps.cache)
-    : new InMemoryCache();
-
-  const client = new ApolloClient({
-    uri: "https://api.spacex.land/graphql",
-    cache,
-  });
-
   return (
     <ApolloProvider client={client}>
       <header>
